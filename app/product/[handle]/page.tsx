@@ -1,20 +1,20 @@
-import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import { Suspense } from 'react';
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { Suspense } from "react";
 
-import { GridTileImage } from 'components/grid/tile';
-import Footer from 'components/layout/footer';
-import { Gallery } from 'components/product/gallery';
-import { ProductDescription } from 'components/product/product-description';
-import { HIDDEN_PRODUCT_TAG } from 'lib/constants';
-import { getProduct, getProductRecommendations } from 'lib/shopify';
-import { Image } from 'lib/shopify/types';
-import Link from 'next/link';
+import { GridTileImage } from "components/grid/tile";
+import Footer from "components/layout/footer";
+import { Gallery } from "components/product/gallery";
+import { ProductDescription } from "components/product/product-description";
+import { HIDDEN_PRODUCT_TAG } from "lib/constants";
+import { getProduct, getProductRecommendations } from "lib/shopify";
+import { Image } from "lib/shopify/types";
+import Link from "next/link";
 
-export const runtime = 'edge';
+export const runtime = "nodejs";
 
 export async function generateMetadata({
-  params
+  params,
 }: {
   params: { handle: string };
 }): Promise<Metadata> {
@@ -33,8 +33,8 @@ export async function generateMetadata({
       follow: hide,
       googleBot: {
         index: hide,
-        follow: hide
-      }
+        follow: hide,
+      },
     },
     openGraph: url
       ? {
@@ -43,34 +43,38 @@ export async function generateMetadata({
               url,
               width,
               height,
-              alt
-            }
-          ]
+              alt,
+            },
+          ],
         }
-      : null
+      : null,
   };
 }
 
-export default async function ProductPage({ params }: { params: { handle: string } }) {
+export default async function ProductPage({
+  params,
+}: {
+  params: { handle: string };
+}) {
   const product = await getProduct(params.handle);
 
   if (!product) return notFound();
 
   const productJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
+    "@context": "https://schema.org",
+    "@type": "Product",
     name: product.title,
     description: product.description,
     image: product.featuredImage.url,
     offers: {
-      '@type': 'AggregateOffer',
+      "@type": "AggregateOffer",
       availability: product.availableForSale
-        ? 'https://schema.org/InStock'
-        : 'https://schema.org/OutOfStock',
+        ? "https://schema.org/InStock"
+        : "https://schema.org/OutOfStock",
       priceCurrency: product.priceRange.minVariantPrice.currencyCode,
       highPrice: product.priceRange.maxVariantPrice.amount,
-      lowPrice: product.priceRange.minVariantPrice.amount
-    }
+      lowPrice: product.priceRange.minVariantPrice.amount,
+    },
   };
 
   return (
@@ -78,7 +82,7 @@ export default async function ProductPage({ params }: { params: { handle: string
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(productJsonLd)
+          __html: JSON.stringify(productJsonLd),
         }}
       />
       <div className="mx-auto max-w-screen-2xl px-4">
@@ -87,7 +91,7 @@ export default async function ProductPage({ params }: { params: { handle: string
             <Gallery
               images={product.images.map((image: Image) => ({
                 src: image.url,
-                altText: image.altText
+                altText: image.altText,
               }))}
             />
           </div>
@@ -128,7 +132,7 @@ async function RelatedProducts({ id }: { id: string }) {
                 label={{
                   title: product.title,
                   amount: product.priceRange.maxVariantPrice.amount,
-                  currencyCode: product.priceRange.maxVariantPrice.currencyCode
+                  currencyCode: product.priceRange.maxVariantPrice.currencyCode,
                 }}
                 src={product.featuredImage?.url}
                 width={600}

@@ -1,22 +1,30 @@
-import { TAGS } from 'lib/constants';
-import { revalidateTag } from 'next/cache';
-import { headers } from 'next/headers';
-import { NextRequest, NextResponse } from 'next/server';
+import { TAGS } from "lib/constants";
+import { revalidateTag } from "next/cache";
+import { headers } from "next/headers";
+import { NextRequest, NextResponse } from "next/server";
 
-export const runtime = 'edge';
+export const runtime = "nodejs";
 
 // We always need to respond with a 200 status code to Shopify,
 // otherwise it will continue to retry the request.
 export async function POST(req: NextRequest): Promise<Response> {
-  const collectionWebhooks = ['collections/create', 'collections/delete', 'collections/update'];
-  const productWebhooks = ['products/create', 'products/delete', 'products/update'];
-  const topic = headers().get('x-shopify-topic') || 'unknown';
-  const secret = req.nextUrl.searchParams.get('secret');
+  const collectionWebhooks = [
+    "collections/create",
+    "collections/delete",
+    "collections/update",
+  ];
+  const productWebhooks = [
+    "products/create",
+    "products/delete",
+    "products/update",
+  ];
+  const topic = headers().get("x-shopify-topic") || "unknown";
+  const secret = req.nextUrl.searchParams.get("secret");
   const isCollectionUpdate = collectionWebhooks.includes(topic);
   const isProductUpdate = productWebhooks.includes(topic);
 
   if (!secret || secret !== process.env.SHOPIFY_REVALIDATION_SECRET) {
-    console.error('Invalid revalidation secret.');
+    console.error("Invalid revalidation secret.");
     return NextResponse.json({ status: 200 });
   }
 

@@ -1,4 +1,4 @@
-import productFragment from '../fragments/product';
+import productFragment from "../fragments/product";
 
 export const getProductQuery = /* GraphQL */ `
   query getProduct($handle: String!) {
@@ -9,8 +9,25 @@ export const getProductQuery = /* GraphQL */ `
   ${productFragment}
 `;
 
+export const getMenuProductQuery = /* GraphQL */ `
+  query getProduct() {
+    products(query: "tag:menu-featured", first: 1) {
+      edges {
+        node {
+          ...product
+        }
+      }
+    }
+  }
+  ${productFragment}
+`;
+
 export const getProductsQuery = /* GraphQL */ `
-  query getProducts($sortKey: ProductSortKeys, $reverse: Boolean, $query: String) {
+  query getProducts(
+    $sortKey: ProductSortKeys
+    $reverse: Boolean
+    $query: String
+  ) {
     products(sortKey: $sortKey, reverse: $reverse, query: $query, first: 100) {
       edges {
         node {
