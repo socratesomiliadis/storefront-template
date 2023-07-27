@@ -1,8 +1,7 @@
 import OpengraphImage from "components/opengraph-image";
 import { getPage } from "lib/shopify";
 
-export const runtime =
-  process.env.NEXT_PUBLIC_VERCEL_ENV === "development" ? "nodejs" : "edge";
+export const runtime = "edge";
 
 export default async function Image({ params }: { params: { page: string } }) {
   const page = await getPage(params.page);

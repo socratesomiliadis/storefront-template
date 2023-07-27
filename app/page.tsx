@@ -2,8 +2,7 @@ import HomeHero from "components/home/home-hero";
 import ProductsOfTheDay from "components/home/products-of-the-day";
 // import { Suspense } from "react";
 
-export const runtime =
-  process.env.NEXT_PUBLIC_VERCEL_ENV === "development" ? "nodejs" : "edge";
+export const runtime = "edge";
 
 export const metadata = {
   description:

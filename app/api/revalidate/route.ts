@@ -3,8 +3,7 @@ import { revalidateTag } from "next/cache";
 import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
-export const runtime =
-  process.env.NEXT_PUBLIC_VERCEL_ENV === "development" ? "nodejs" : "edge";
+export const runtime = "edge";
 
 // We always need to respond with a 200 status code to Shopify,
 // otherwise it will continue to retry the request.

@@ -3,8 +3,7 @@ import ProductGridItems from "components/layout/product-grid-items";
 import { defaultSort, sorting } from "lib/constants";
 import { getProducts } from "lib/shopify";
 
-export const runtime =
-  process.env.NEXT_PUBLIC_VERCEL_ENV === "development" ? "nodejs" : "edge";
+export const runtime = "edge";
 
 export const metadata = {
   title: "Search",
