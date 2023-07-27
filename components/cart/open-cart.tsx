@@ -8,8 +8,6 @@ export default function OpenCart({
   quantity?: number;
 }) {
   return (
-    <div className={clsx("relative text-darkGray text-lg", className)}>
-      Cart ({quantity})
-    </div>
+    <div className={clsx("relative text-lg", className)}>Cart ({quantity})</div>
   );
 }

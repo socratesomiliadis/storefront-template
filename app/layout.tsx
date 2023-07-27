@@ -1,4 +1,3 @@
-import Banner from "components/layout/banner";
 import Navbar from "components/layout/navbar";
 import { Inter } from "next/font/google";
 import { ReactNode, Suspense } from "react";
@@ -38,8 +37,7 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.variable}>
-      <body className="bg-neutral-50 text-black selection:bg-teal-300 dark:bg-neutral-900 dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
-        <Banner />
+      <body className="bg-offWhite text-black selection:bg-teal-300">
         <Navbar />
         <Suspense>
           <main>{children}</main>

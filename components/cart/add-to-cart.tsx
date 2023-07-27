@@ -1,16 +1,15 @@
-'use client';
+"use client";
 
-import { PlusIcon } from '@heroicons/react/24/outline';
-import clsx from 'clsx';
-import { addItem } from 'components/cart/actions';
-import LoadingDots from 'components/loading-dots';
-import { ProductVariant } from 'lib/shopify/types';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState, useTransition } from 'react';
+import clsx from "clsx";
+import { addItem } from "components/cart/actions";
+import LoadingDots from "components/loading-dots";
+import { ProductVariant } from "lib/shopify/types";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState, useTransition } from "react";
 
 export function AddToCart({
   variants,
-  availableForSale
+  availableForSale,
 }: {
   variants: ProductVariant[];
   availableForSale: boolean;
@@ -23,8 +22,9 @@ export function AddToCart({
   useEffect(() => {
     const variant = variants.find((variant: ProductVariant) =>
       variant.selectedOptions.every(
-        (option) => option.value === searchParams.get(option.name.toLowerCase())
-      )
+        (option) =>
+          option.value === searchParams.get(option.name.toLowerCase()),
+      ),
     );
 
     if (variant) {
@@ -50,17 +50,31 @@ export function AddToCart({
         });
       }}
       className={clsx(
-        'relative flex w-full items-center justify-center rounded-full bg-blue-600 p-4 tracking-wide text-white hover:opacity-90',
+        "relative flex w-full items-center overflow-hidden justify-center rounded-md bg-darkGray p-4 text-white hover:opacity-90",
         {
-          'cursor-not-allowed opacity-60': !availableForSale,
-          'cursor-not-allowed': isPending
-        }
+          "cursor-not-allowed opacity-60": !availableForSale,
+          "cursor-not-allowed": isPending,
+        },
       )}
     >
-      <div className="absolute left-0 ml-4">
-        {!isPending ? <PlusIcon className="h-5" /> : <LoadingDots className="mb-3 bg-white" />}
+      <span
+        style={{
+          transform: !isPending ? "translateY(0px)" : "translateY(-150%)",
+        }}
+        className="transition-transform duration-300 ease-out"
+      >
+        {availableForSale ? "Add to cart" : "Out Of Stock"}
+      </span>
+      <div
+        style={{
+          transform: isPending
+            ? "translateY(0px) translateX(-50%)"
+            : "translateY(120%) translateX(-50%)",
+        }}
+        className="absolute transition-transform duration-300 ease-out left-1/2"
+      >
+        <LoadingDots className="mb-3 w-[0.4rem] h-[0.4rem] bg-white/60" />
       </div>
-      <span>{availableForSale ? 'Add To Cart' : 'Out Of Stock'}</span>
     </button>
   );
 }

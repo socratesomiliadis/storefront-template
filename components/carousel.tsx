@@ -1,10 +1,12 @@
-import { getCollectionProducts } from 'lib/shopify';
-import Link from 'next/link';
-import { GridTileImage } from './grid/tile';
+import { getCollectionProducts } from "lib/shopify";
+import Link from "next/link";
+import { GridTileImage } from "./grid/tile";
 
 export async function Carousel() {
   // Collections that start with `hidden-*` are hidden from the search page.
-  const products = await getCollectionProducts({ collection: 'hidden-homepage-carousel' });
+  const products = await getCollectionProducts({
+    collection: "hidden-products-of-the-day",
+  });
 
   if (!products?.length) return null;
 
@@ -22,7 +24,7 @@ export async function Carousel() {
               label={{
                 title: product.title,
                 amount: product.priceRange.maxVariantPrice.amount,
-                currencyCode: product.priceRange.maxVariantPrice.currencyCode
+                currencyCode: product.priceRange.maxVariantPrice.currencyCode,
               }}
               src={product.featuredImage?.url}
               width={600}

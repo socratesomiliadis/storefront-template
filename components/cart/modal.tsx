@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import { Dialog, Transition } from '@headlessui/react';
-import { ShoppingCartIcon } from '@heroicons/react/24/outline';
-import Price from 'components/price';
-import { DEFAULT_OPTION } from 'lib/constants';
-import type { Cart } from 'lib/shopify/types';
-import { createUrl } from 'lib/utils';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Fragment, useEffect, useRef, useState } from 'react';
-import CloseCart from './close-cart';
-import DeleteItemButton from './delete-item-button';
-import EditItemQuantityButton from './edit-item-quantity-button';
-import OpenCart from './open-cart';
+import { Dialog, Transition } from "@headlessui/react";
+import { ShoppingCartIcon } from "@heroicons/react/24/outline";
+import Price from "components/price";
+import { DEFAULT_OPTION } from "lib/constants";
+import type { Cart } from "lib/shopify/types";
+import { createUrl } from "lib/utils";
+import Image from "next/image";
+import Link from "next/link";
+import { Fragment, useEffect, useRef, useState } from "react";
+import CloseCart from "./close-cart";
+import DeleteItemButton from "./delete-item-button";
+import EditItemQuantityButton from "./edit-item-quantity-button";
+import OpenCart from "./open-cart";
 
 type MerchandiseSearchParams = {
   [key: string]: string;
@@ -43,7 +43,7 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
         <OpenCart quantity={cart?.totalQuantity} />
       </button>
       <Transition show={isOpen}>
-        <Dialog onClose={closeCart} className="relative z-50">
+        <Dialog onClose={closeCart} className="relative z-[998]">
           <Transition.Child
             as={Fragment}
             enter="transition-all ease-in-out duration-300"
@@ -53,7 +53,7 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
             leaveFrom="opacity-100 backdrop-blur-[.5px]"
             leaveTo="opacity-0 backdrop-blur-none"
           >
-            <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+            <div className="fixed inset-0 bg-black/40" aria-hidden="true" />
           </Transition.Child>
           <Transition.Child
             as={Fragment}
@@ -76,23 +76,28 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
               {!cart || cart.lines.length === 0 ? (
                 <div className="mt-20 flex w-full flex-col items-center justify-center overflow-hidden">
                   <ShoppingCartIcon className="h-16" />
-                  <p className="mt-6 text-center text-2xl font-bold">Your cart is empty.</p>
+                  <p className="mt-6 text-center text-2xl font-bold">
+                    Your cart is empty.
+                  </p>
                 </div>
               ) : (
                 <div className="flex h-full flex-col justify-between overflow-hidden p-1">
                   <ul className="flex-grow overflow-auto py-4">
                     {cart.lines.map((item, i) => {
-                      const merchandiseSearchParams = {} as MerchandiseSearchParams;
+                      const merchandiseSearchParams =
+                        {} as MerchandiseSearchParams;
 
-                      item.merchandise.selectedOptions.forEach(({ name, value }) => {
-                        if (value !== DEFAULT_OPTION) {
-                          merchandiseSearchParams[name.toLowerCase()] = value;
-                        }
-                      });
+                      item.merchandise.selectedOptions.forEach(
+                        ({ name, value }) => {
+                          if (value !== DEFAULT_OPTION) {
+                            merchandiseSearchParams[name.toLowerCase()] = value;
+                          }
+                        },
+                      );
 
                       const merchandiseUrl = createUrl(
                         `/product/${item.merchandise.product.handle}`,
-                        new URLSearchParams(merchandiseSearchParams)
+                        new URLSearchParams(merchandiseSearchParams),
                       );
 
                       return (
@@ -115,10 +120,12 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
                                   width={64}
                                   height={64}
                                   alt={
-                                    item.merchandise.product.featuredImage.altText ||
-                                    item.merchandise.product.title
+                                    item.merchandise.product.featuredImage
+                                      .altText || item.merchandise.product.title
                                   }
-                                  src={item.merchandise.product.featuredImage.url}
+                                  src={
+                                    item.merchandise.product.featuredImage.url
+                                  }
                                 />
                               </div>
 
@@ -137,14 +144,24 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
                               <Price
                                 className="flex flex-col justify-between space-y-2 text-sm"
                                 amount={item.cost.totalAmount.amount}
-                                currencyCode={item.cost.totalAmount.currencyCode}
+                                currencyCode={
+                                  item.cost.totalAmount.currencyCode
+                                }
                               />
                               <div className="ml-auto flex h-9 flex-row items-center rounded-full border border-neutral-200 dark:border-neutral-700">
-                                <EditItemQuantityButton item={item} type="minus" />
+                                <EditItemQuantityButton
+                                  item={item}
+                                  type="minus"
+                                />
                                 <p className="w-6 text-center ">
-                                  <span className="w-full text-sm">{item.quantity}</span>
+                                  <span className="w-full text-sm">
+                                    {item.quantity}
+                                  </span>
                                 </p>
-                                <EditItemQuantityButton item={item} type="plus" />
+                                <EditItemQuantityButton
+                                  item={item}
+                                  type="plus"
+                                />
                               </div>
                             </div>
                           </div>
