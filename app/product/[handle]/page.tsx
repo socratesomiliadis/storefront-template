@@ -11,7 +11,8 @@ import { getProduct, getProductRecommendations } from "lib/shopify";
 import { Image } from "lib/shopify/types";
 import Link from "next/link";
 
-export const runtime = "edge";
+export const runtime =
+  process.env.NEXT_PUBLIC_VERCEL_ENV === "development" ? "nodejs" : "edge";
 
 export async function generateMetadata({
   params,

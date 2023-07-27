@@ -17,3 +17,15 @@ button {
 body {
   overflow-x: hidden;
 }
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-softGray;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-darkGray;
+}

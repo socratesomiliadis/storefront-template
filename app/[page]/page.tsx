@@ -4,7 +4,8 @@ import Prose from "components/prose";
 import { getPage } from "lib/shopify";
 import { notFound } from "next/navigation";
 
-export const runtime = "edge";
+export const runtime =
+  process.env.NEXT_PUBLIC_VERCEL_ENV === "development" ? "nodejs" : "edge";
 
 export const revalidate = 43200; // 12 hours in seconds
 

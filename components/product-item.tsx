@@ -59,9 +59,11 @@ export default function ProductItem({
           <Image
             alt={product.title}
             src={product.featuredImage?.url}
+            blurDataURL={product.featuredImage?.url}
+            placeholder="blur"
             width={600}
             height={600}
-            className="object-contain group-hover:scale-105 group-hover:rotate-[-3deg] transition-transform duration-300 ease-out h-[50%] w-[40%]"
+            className="object-contain group-hover:scale-105 transition-transform duration-300 ease-out h-[50%] w-[40%]"
           />
         </Link>
       </div>

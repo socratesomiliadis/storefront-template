@@ -20,8 +20,8 @@ export default function ChangeNavColor() {
     lightSections.forEach((section) => {
       ScrollTrigger.create({
         trigger: section as HTMLElement,
-        start: "top top",
-        end: "bottom top",
+        start: "top 5%",
+        end: "bottom 5%",
         onEnter: () => {
           setNavColor("light");
         },

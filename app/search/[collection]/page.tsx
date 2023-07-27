@@ -6,7 +6,8 @@ import Grid from "components/grid";
 import ProductGridItems from "components/layout/product-grid-items";
 import { defaultSort, sorting } from "lib/constants";
 
-export const runtime = "edge";
+export const runtime =
+  process.env.NEXT_PUBLIC_VERCEL_ENV === "development" ? "nodejs" : "edge";
 
 export async function generateMetadata({
   params,
