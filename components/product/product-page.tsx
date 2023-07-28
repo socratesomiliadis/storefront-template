@@ -1,12 +1,28 @@
+"use client";
+
 import { AddToCart } from "components/cart/add-to-cart";
 import Price from "components/price";
 import { Product } from "lib/shopify/types";
 import Image from "next/image";
-
+import { motion } from "framer-motion";
 export default function ProductPage({ product }: { product: Product }) {
   const firstTwoImages = product.images.slice(0, 2);
   return (
-    <div className="w-full grid grid-cols-2 place-items-start gap-16 px-8">
+    <motion.div
+      initial={{
+        opacity: 0,
+        y: 100,
+      }}
+      animate={{
+        opacity: 1,
+        y: 0,
+      }}
+      transition={{
+        duration: 0.4,
+        ease: "easeOut",
+      }}
+      className="w-full pt-12 grid grid-cols-2 place-items-start gap-16 px-8"
+    >
       <div className="w-full relative flex flex-col pt-12 gap-8">
         {firstTwoImages.map((image, index) => {
           return (
@@ -56,6 +72,6 @@ export default function ProductPage({ product }: { product: Product }) {
           availableForSale={product.availableForSale}
         />
       </div>
-    </div>
+    </motion.div>
   );
 }

@@ -10,6 +10,7 @@ import { HIDDEN_PRODUCT_TAG } from "lib/constants";
 import { getProduct, getProductRecommendations } from "lib/shopify";
 import { Image } from "lib/shopify/types";
 import Link from "next/link";
+import ProductPage from "components/product/product-page";
 
 export const runtime = "edge";
 
@@ -51,7 +52,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function ProductPage({
+export default async function ProductPageFunc({
   params,
 }: {
   params: { handle: string };
@@ -85,7 +86,8 @@ export default async function ProductPage({
           __html: JSON.stringify(productJsonLd),
         }}
       />
-      <div className="mx-auto max-w-screen-2xl px-4">
+      <ProductPage product={product} />
+      {/* <div className="mx-auto max-w-screen-2xl px-4">
         <div className="rounded-lg border border-neutral-200 bg-white p-8 px-4 dark:border-neutral-800 dark:bg-black md:p-12 lg:grid lg:grid-cols-6">
           <div className="lg:col-span-4">
             <Gallery
@@ -106,7 +108,7 @@ export default async function ProductPage({
       </div>
       <Suspense>
         <Footer />
-      </Suspense>
+      </Suspense> */}
     </>
   );
 }

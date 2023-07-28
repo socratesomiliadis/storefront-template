@@ -23,7 +23,9 @@ export default function Modal({ children }: { children: React.ReactNode }) {
       width: 0,
       duration: 0.6,
       ease: "power4.out",
-      onComplete: () => router.back(),
+      onComplete: () => {
+        router.back();
+      },
     });
   }, [router]);
 

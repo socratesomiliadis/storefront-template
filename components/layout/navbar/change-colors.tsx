@@ -22,6 +22,7 @@ export default function ChangeNavColor() {
         trigger: section as HTMLElement,
         start: "top 5%",
         end: "bottom 5%",
+        id: "light-st",
         onEnter: () => {
           setNavColor("light");
         },
@@ -33,6 +34,10 @@ export default function ChangeNavColor() {
         },
       });
     });
+
+    return () => {
+      ScrollTrigger.getById("light-st")?.kill();
+    };
   }, []);
   return null;
 }
