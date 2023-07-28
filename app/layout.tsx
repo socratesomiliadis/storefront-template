@@ -32,15 +32,20 @@ const inter = Inter({
 
 export default async function RootLayout({
   children,
+  modal,
 }: {
   children: ReactNode;
+  modal: ReactNode;
 }) {
   return (
     <html lang="en" className={inter.variable}>
       <body className="bg-offWhite text-black selection:bg-teal-300">
         <Navbar />
         <Suspense>
-          <main>{children}</main>
+          <main>
+            {children}
+            {modal}
+          </main>
         </Suspense>
       </body>
     </html>

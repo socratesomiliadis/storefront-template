@@ -1,3 +1,5 @@
+import clsx from "clsx";
+
 const Price = ({
   compareAmount,
   amount,
@@ -7,9 +9,9 @@ const Price = ({
   compareAmount?: string;
   amount: string;
   currencyCode: string;
-} & React.ComponentProps<"p">) => (
-  <p
-    className="flex flex-col items-end"
+} & React.ComponentProps<"div">) => (
+  <div
+    className={clsx("flex w-fit flex-row items-center gap-2", props.className)}
     suppressHydrationWarning={true}
     {...props}
   >
@@ -31,7 +33,7 @@ const Price = ({
       }).format(parseFloat(amount))}`}
       <span className="hidden @[275px]/label:inline">{` ${currencyCode}`}</span>
     </span>
-  </p>
+  </div>
 );
 
 export default Price;

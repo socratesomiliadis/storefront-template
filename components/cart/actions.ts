@@ -1,10 +1,19 @@
-'use server';
+"use server";
 
-import { addToCart, createCart, getCart, removeFromCart, updateCart } from 'lib/shopify';
-import { cookies } from 'next/headers';
+import {
+  addToCart,
+  createCart,
+  getCart,
+  removeFromCart,
+  updateCart,
+} from "lib/shopify";
+import { cookies } from "next/headers";
 
-export const addItem = async (variantId: string | undefined): Promise<Error | undefined> => {
-  let cartId = cookies().get('cartId')?.value;
+export const addItem = async (
+  variantId: string | undefined,
+  quantity: number,
+): Promise<Error | undefined> => {
+  let cartId = cookies().get("cartId")?.value;
   let cart;
 
   if (cartId) {
@@ -14,55 +23,57 @@ export const addItem = async (variantId: string | undefined): Promise<Error | un
   if (!cartId || !cart) {
     cart = await createCart();
     cartId = cart.id;
-    cookies().set('cartId', cartId);
+    cookies().set("cartId", cartId);
   }
 
   if (!variantId) {
-    return new Error('Missing variantId');
+    return new Error("Missing variantId");
   }
   try {
-    await addToCart(cartId, [{ merchandiseId: variantId, quantity: 1 }]);
+    await addToCart(cartId, [{ merchandiseId: variantId, quantity: quantity }]);
   } catch (e) {
-    return new Error('Error adding item', { cause: e });
+    return new Error("Error adding item", { cause: e });
   }
 };
 
-export const removeItem = async (lineId: string): Promise<Error | undefined> => {
-  const cartId = cookies().get('cartId')?.value;
+export const removeItem = async (
+  lineId: string,
+): Promise<Error | undefined> => {
+  const cartId = cookies().get("cartId")?.value;
 
   if (!cartId) {
-    return new Error('Missing cartId');
+    return new Error("Missing cartId");
   }
   try {
     await removeFromCart(cartId, [lineId]);
   } catch (e) {
-    return new Error('Error removing item', { cause: e });
+    return new Error("Error removing item", { cause: e });
   }
 };
 
 export const updateItemQuantity = async ({
   lineId,
   variantId,
-  quantity
+  quantity,
 }: {
   lineId: string;
   variantId: string;
   quantity: number;
 }): Promise<Error | undefined> => {
-  const cartId = cookies().get('cartId')?.value;
+  const cartId = cookies().get("cartId")?.value;
 
   if (!cartId) {
-    return new Error('Missing cartId');
+    return new Error("Missing cartId");
   }
   try {
     await updateCart(cartId, [
       {
         id: lineId,
         merchandiseId: variantId,
-        quantity
-      }
+        quantity,
+      },
     ]);
   } catch (e) {
-    return new Error('Error updating item quantity', { cause: e });
+    return new Error("Error updating item quantity", { cause: e });
   }
 };
