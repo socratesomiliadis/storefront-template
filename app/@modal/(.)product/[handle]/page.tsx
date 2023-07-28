@@ -9,7 +9,7 @@ import { getProduct, getProductRecommendations } from "lib/shopify";
 import { Image } from "lib/shopify/types";
 import Link from "next/link";
 import ProductPage from "components/product/product-page";
-export const runtime = "nodejs";
+export const runtime = "edge";
 
 export default async function ProductPageModal({
   params,
