@@ -1,16 +1,10 @@
-"use client";
-
 import clsx from "clsx";
 import { Product } from "lib/shopify/types";
 import Image from "next/image";
 import tailwindConfig from "tailwind.config.js";
 import Price from "./price";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
 import { AddToCart } from "./cart/add-to-cart";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
 
 export default function ProductItem({
   product,
@@ -30,43 +24,18 @@ export default function ProductItem({
   const daysDifference = Math.floor(difference / 1000 / 60 / 60 / 24);
   const isNew = daysDifference < 30;
 
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const item = ref.current as HTMLDivElement;
-
-    gsap.fromTo(
-      item,
-      {
-        opacity: 0,
-        y: 50,
-      },
-      {
-        scrollTrigger: {
-          trigger: item,
-          start: "center bottom",
-        },
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        ease: "power3.out",
-      },
-    );
-  }, []);
-
   return (
     <div
-      ref={ref}
-      className={clsx("flex opacity-0 group flex-col relative", className)}
+      className={clsx("product-item flex group flex-col relative", className)}
     >
       {!product.availableForSale && (
-        <span className="bg-softGray z-10 select-none text-sm block px-6 py-2 rounded-md text-darkGray absolute right-6 top-6">
+        <span className="bg-softGray z-10 select-none text-sm block px-6 py-2 rounded-md text-darkGray absolute right-6 bottom-16 lg:bottom-auto lg:top-6">
           Out of stock
         </span>
       )}
 
       {product.availableForSale && isNew && (
-        <span className="bg-offWhite z-10 select-none text-sm block px-12 py-2 rounded-md text-darkGray absolute right-6 top-6">
+        <span className="bg-offWhite z-10 select-none text-sm hidden lg:block px-12 py-2 rounded-md text-darkGray absolute right-6 top-6">
           New
         </span>
       )}
@@ -78,7 +47,7 @@ export default function ProductItem({
         className="w-full overflow-hidden relative z-0 bg-softGray aspect-[1/1] h-auto"
       >
         {!!product.availableForSale && (
-          <div className="absolute translate-y-[150%] group-hover:translate-y-0 transition-transform duration-300 ease-out z-10 w-full px-12 bottom-6">
+          <div className="absolute lg:translate-y-[150%] lg:group-hover:translate-y-0 transition-transform duration-300 ease-out z-10 w-full px-6 lg:px-12 bottom-4 lg:bottom-6">
             <AddToCart
               variants={product.variants}
               availableForSale={product.availableForSale}

@@ -10,6 +10,7 @@ import {
   editCartItemsMutation,
   removeFromCartMutation,
 } from "./mutations/cart";
+import { customerCreateMutation } from "./mutations/customer";
 import { getCartQuery } from "./queries/cart";
 import {
   getCollectionProductsQuery,
@@ -29,6 +30,7 @@ import {
   Cart,
   Collection,
   Connection,
+  Customer,
   Image,
   Menu,
   Page,
@@ -41,6 +43,7 @@ import {
   ShopifyCollectionProductsOperation,
   ShopifyCollectionsOperation,
   ShopifyCreateCartOperation,
+  ShopifyCreateCustomerOperation,
   ShopifyMenuOperation,
   ShopifyPageOperation,
   ShopifyPagesOperation,
@@ -218,6 +221,14 @@ export async function createCart(): Promise<Cart> {
   });
 
   return reshapeCart(res.body.data.cartCreate.cart);
+}
+
+export async function createCustomer(): Promise<Customer> {
+  const res = await shopifyFetch<ShopifyCreateCustomerOperation>({
+    query: customerCreateMutation,
+    cache: "no-store",
+  });
+  return res.body.data.customerCreate.customer;
 }
 
 export async function addToCart(

@@ -1,3 +1,4 @@
+import FeaturedProducts from "components/home/featured-products";
 import HomeHero from "components/home/home-hero";
 import ProductsOfTheDay from "components/home/products-of-the-day";
 // import { Suspense } from "react";
@@ -12,11 +13,16 @@ export const metadata = {
   },
 };
 
-export default async function HomePage() {
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) {
   return (
     <>
       <HomeHero />
       <ProductsOfTheDay />
+      <FeaturedProducts searchParams={searchParams} />
     </>
   );
 }

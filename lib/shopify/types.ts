@@ -12,6 +12,31 @@ export type Cart = Omit<ShopifyCart, "lines"> & {
   lines: CartItem[];
 };
 
+export type Customer = {
+  id: string;
+  firstName: string;
+  lastName: string;
+  displayName: string;
+  email: string;
+  phone: string;
+  acceptsMarketing: boolean;
+  createdAt: string;
+  orders: Connection<Order>;
+};
+
+export type Order = {
+  id: string;
+  currentTotalPrice: Money;
+  currentTotalTax: Money;
+  email: string;
+  orderNumber: number;
+};
+
+export type CustomerAccessToken = {
+  accessToken: string;
+  expiresAt: string;
+};
+
 export type CartItem = {
   id: string;
   quantity: number;
@@ -144,6 +169,74 @@ export type ShopifyCartOperation = {
 
 export type ShopifyCreateCartOperation = {
   data: { cartCreate: { cart: ShopifyCart } };
+};
+
+export type ShopifyCreateCustomerOperation = {
+  data: {
+    customerCreate: {
+      customer: Customer;
+    };
+  };
+};
+
+export type ShopifyCustomerAccessTokenCreateOperation = {
+  data: {
+    customerAccessTokenCreate: {
+      customerAccessToken: CustomerAccessToken;
+      customerUserErrors: {
+        code: string;
+        field: string;
+        message: string;
+      }[];
+    };
+  };
+};
+
+export type ShopifyCustomerActivateOperation = {
+  data: {
+    customerActivate: {
+      customer: Customer;
+      customerAccessToken: CustomerAccessToken;
+      customerUserErrors: {
+        code: string;
+        field: string;
+        message: string;
+      }[];
+    };
+  };
+};
+
+export type ShopifyCustomerActivateByUrlOperation = {
+  data: {
+    customerActivateByUrl: {
+      customer: Customer;
+      customerAccessToken: CustomerAccessToken;
+      customerUserErrors: {
+        code: string;
+        field: string;
+        message: string;
+      }[];
+    };
+  };
+};
+
+export type ShopifyCustomerAccessTokenDeleteOperation = {
+  data: {
+    customerAccessTokenDelete: {
+      deletedAccessToken: string;
+      deletedCustomerAccessTokenId: string;
+      userErrors: {
+        field: string;
+        message: string;
+      }[];
+    };
+  };
+};
+
+export type ShopifyCustomerOperation = {
+  data: {
+    customer: Customer;
+  };
 };
 
 export type ShopifyAddToCartOperation = {
