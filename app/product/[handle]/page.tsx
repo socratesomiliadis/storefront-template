@@ -6,7 +6,7 @@ import { getProduct, getProductRecommendations } from "lib/shopify";
 import Link from "next/link";
 import ProductPage from "components/product/product-page";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 export async function generateMetadata({
   params,
