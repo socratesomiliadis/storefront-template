@@ -5,7 +5,7 @@ import ProductsOfTheDay from "components/home/products-of-the-day";
 import QuickInfoSection from "components/home/quick-info-section";
 // import { Suspense } from "react";
 
-export const runtime = "nodejs";
+export const runtime = "edge";
 
 export const metadata = {
   description:
