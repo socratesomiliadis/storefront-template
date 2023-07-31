@@ -81,63 +81,41 @@ export default async function ProductPageFunc({
         }}
       />
       <ProductPage product={product} />
-      {/* <div className="mx-auto max-w-screen-2xl px-4">
-        <div className="rounded-lg border border-neutral-200 bg-white p-8 px-4 dark:border-neutral-800 dark:bg-black md:p-12 lg:grid lg:grid-cols-6">
-          <div className="lg:col-span-4">
-            <Gallery
-              images={product.images.map((image: Image) => ({
-                src: image.url,
-                altText: image.altText,
-              }))}
-            />
-          </div>
-
-          <div className="py-6 pr-8 md:pr-12 lg:col-span-2">
-            <ProductDescription product={product} />
-          </div>
-        </div>
-        <Suspense>
-          <RelatedProducts id={product.id} />
-        </Suspense>
-      </div>
-      <Suspense>
-        <Footer />
-      </Suspense> */}
     </>
   );
 }
 
-async function RelatedProducts({ id }: { id: string }) {
-  const relatedProducts = await getProductRecommendations(id);
+// async function RelatedProducts({ id }: { id: string }) {
+//   const relatedProducts = await getProductRecommendations(id);
 
-  if (!relatedProducts.length) return null;
+//   if (!relatedProducts.length) return null;
 
-  return (
-    <div className="py-8">
-      <h2 className="mb-4 text-2xl font-bold">Related Products</h2>
-      <div className="flex w-full gap-4 overflow-x-auto pt-1">
-        {relatedProducts.map((product, i) => {
-          return (
-            <Link
-              key={i}
-              className="w-full flex-none min-[475px]:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5"
-              href={`/product/${product.handle}`}
-            >
-              <GridTileImage
-                alt={product.title}
-                label={{
-                  title: product.title,
-                  amount: product.priceRange.maxVariantPrice.amount,
-                  currencyCode: product.priceRange.maxVariantPrice.currencyCode,
-                }}
-                src={product.featuredImage?.url}
-                width={600}
-                height={600}
-              />
-            </Link>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
+//   return (
+//     <div className="py-8">
+//       <h2 className="mb-4 text-2xl font-bold">Related Products</h2>
+//       <div className="flex w-full gap-4 overflow-x-auto pt-1">
+//         {relatedProducts.map((product, i) => {
+//           return (
+//             <Link
+//               key={i}
+//               className="w-full flex-none min-[475px]:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5"
+//               href={`/product/${product.handle}`}
+//             >
+//               <GridTileImage
+//                 alt={product.title}
+//                 label={{
+//                   title: product.title,
+//                   amount: product.priceRange.maxVariantPrice.amount,
+//                   currencyCode: product.priceRange.maxVariantPrice.currencyCode,
+//                 }}
+//                 src={product.featuredImage?.url}
+//                 width={600}
+//                 height={600}
+//               />
+//             </Link>
+//           );
+//         })}
+//       </div>
+//     </div>
+//   );
+// }
