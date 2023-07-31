@@ -59,10 +59,8 @@ export default function ChangeNavColor() {
       });
 
       return () => {
-        const STs = ScrollTrigger.getAll();
-        STs.forEach((st) => {
-          st.kill();
-        });
+        ScrollTrigger.getById("light-st")?.kill();
+        ScrollTrigger.getById("dark-st")?.kill();
       };
     } else {
       setNavColor("dark");
