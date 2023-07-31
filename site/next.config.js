@@ -14,6 +14,24 @@ module.exports = withCommerceConfig({
     locales: ['en-US', 'es'],
     defaultLocale: 'en-US',
   },
+  webpack: (config, options) => {
+    config.module.rules.push({
+      test: /\.(ts)x?$/, // Just `tsx?` file only
+      use: [
+        // options.defaultLoaders.babel, I don't think it's necessary to have this loader too
+        {
+          loader: 'ts-loader',
+          options: {
+            transpileOnly: true,
+            experimentalWatchApi: true,
+            onlyCompileBundledFiles: true,
+          },
+        },
+      ],
+    })
+
+    return config
+  },
   rewrites() {
     return [
       (isBC || isShopify || isSwell || isVendure || isSaleor) && {

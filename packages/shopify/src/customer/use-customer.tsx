@@ -1,12 +1,16 @@
 import type { SWRHook } from '@vercel/commerce/utils/types'
 import type { CustomerHook } from '@vercel/commerce/types/customer'
 import type { GetCustomerQuery, GetCustomerQueryVariables } from '../../schema'
-import { getCustomerQuery, getCustomerToken } from '../utils'
+import {
+  getCustomerQuery,
+  getCustomerIdQuery,
+  getCustomerToken,
+} from '../utils'
 import useCustomer, {
   type UseCustomer,
 } from '@vercel/commerce/customer/use-customer'
 
-export default useCustomer
+export default useCustomer as UseCustomer<typeof handler>
 
 export const handler: SWRHook<CustomerHook> = {
   fetchOptions: {
@@ -14,20 +18,18 @@ export const handler: SWRHook<CustomerHook> = {
   },
   async fetcher({ options, fetch }) {
     const customerAccessToken = getCustomerToken()
-
-    if (customerAccessToken) {
+    if (!!customerAccessToken) {
       const { customer } = await fetch<
         GetCustomerQuery,
         GetCustomerQueryVariables
       >({
         ...options,
-        variables: { customerAccessToken: getCustomerToken() },
+        variables: { customerAccessToken: customerAccessToken },
       })
 
       if (!customer) {
         return null
       }
-
       return {
         id: customer.id,
         firstName: customer.firstName ?? 'N/A',

@@ -7,7 +7,6 @@ export const getCustomerQuery = /* GraphQL */ `
       displayName
       email
       phone
-      tags
       acceptsMarketing
       createdAt
     }

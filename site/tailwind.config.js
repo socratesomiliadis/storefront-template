@@ -3,9 +3,13 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
   ],
+
   safelist: ['outline-none'],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-inter)'],
+      },
       maxWidth: {
         '8xl': '1920px',
       },
@@ -36,6 +40,11 @@ module.exports = {
         blue: 'var(--blue)',
         green: 'var(--green)',
         red: 'var(--red)',
+        darkGray: '#392F2F',
+        offWhite: '#F8F6F0',
+        softGray: '#E8E4DD',
+        accentGray: '#D6CDC1',
+        gray: '#8C8C8C',
       },
       textColor: {
         base: 'var(--text-base)',
