@@ -9,6 +9,7 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import FilterList from "./filter";
 import { useSearchParams } from "next/navigation";
 import { sorting } from "lib/constants";
+import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function FeaProdAnim({ products }: { products: Product[] }) {
@@ -24,6 +25,11 @@ export default function FeaProdAnim({ products }: { products: Product[] }) {
     const productItems = section.querySelectorAll(
       ".product-item",
     ) as NodeListOf<HTMLDivElement>;
+    const filterList = section.querySelector(".filter-list") as HTMLDivElement;
+    const productsNum = section.querySelector(
+      ".products-num",
+    ) as HTMLSpanElement;
+    const seeAllBtn = section.querySelector(".see-all-btn") as HTMLDivElement;
 
     const splitTitle = SplitType.create(title, {
       types: ["words"],
@@ -63,6 +69,36 @@ export default function FeaProdAnim({ products }: { products: Product[] }) {
         stagger: 0.05,
       },
       0,
+    );
+    tl.fromTo(
+      filterList,
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+      },
+      0.1,
+    );
+    tl.fromTo(
+      productsNum,
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+      },
+      0.1,
+    );
+    tl.fromTo(
+      seeAllBtn,
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+      },
+      0.1,
     );
     tl.fromTo(
       productItems,
@@ -122,9 +158,9 @@ export default function FeaProdAnim({ products }: { products: Product[] }) {
   return (
     <section
       ref={sectionRef}
-      className="bg-offWhite pt-64 dark-section min-h-screen justify-evenly gap-16 relative z-10 w-screen flex flex-col items-start px-6 lg:px-[6vw]"
+      className="bg-offWhite py-64 min-h-screen justify-evenly gap-16 relative z-10 w-screen flex flex-col items-center px-6 lg:px-[6vw]"
     >
-      <div className="w-full flex flex-row items-start justify-between">
+      <div className="w-full flex flex-row items-center justify-between">
         <div className="flex flex-row gap-4 items-start">
           <h3
             ref={titleRef}
@@ -132,7 +168,9 @@ export default function FeaProdAnim({ products }: { products: Product[] }) {
           >
             Featured Products
           </h3>
-          <span className="text-4xl text-gray">{products.length}</span>
+          <span className="text-4xl products-num text-gray">
+            {products.length}
+          </span>
         </div>
         <FilterList list={sorting} />
       </div>
@@ -145,6 +183,12 @@ export default function FeaProdAnim({ products }: { products: Product[] }) {
           />
         ))}
       </div>
+      <Link
+        href="/products"
+        className="see-all-btn mt-16 flex flex-row items-center"
+      >
+        <span className="text-lg underline text-gray">See all</span>
+      </Link>
     </section>
   );
 }

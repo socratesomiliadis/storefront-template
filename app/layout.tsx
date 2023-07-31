@@ -2,6 +2,7 @@ import Navbar from "components/layout/navbar";
 import { Inter } from "next/font/google";
 import { ReactNode, Suspense } from "react";
 import "./globals.css";
+import Footer from "components/footer";
 
 const { TWITTER_CREATOR, TWITTER_SITE, SITE_NAME } = process.env;
 
@@ -37,11 +38,12 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.variable}>
-      <body className="bg-offWhite text-black selection:bg-teal-300">
+      <body className="bg-softGray text-black selection:bg-teal-300">
         <Navbar />
         <Suspense>
-          <main>{children}</main>
+          <main className="bg-softGray">{children}</main>
         </Suspense>
+        <Footer />
       </body>
     </html>
   );

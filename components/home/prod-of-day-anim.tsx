@@ -79,7 +79,7 @@ export default function ProdOfDayAnim({ products }: { products: Product[] }) {
   return (
     <section
       ref={sectionRef}
-      className="bg-offWhite dark-section min-h-screen pt-16 justify-evenly gap-16 relative z-10 w-screen flex flex-col items-center"
+      className="bg-offWhite min-h-screen pt-16 justify-evenly gap-16 relative z-10 w-screen flex flex-col items-center"
     >
       <div className="flex flex-col gap-4 items-center">
         <span

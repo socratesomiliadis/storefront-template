@@ -1,9 +1,11 @@
+import HelpCTA from "components/help-cta";
 import FeaturedProducts from "components/home/featured-products";
 import HomeHero from "components/home/home-hero";
 import ProductsOfTheDay from "components/home/products-of-the-day";
+import QuickInfoSection from "components/home/quick-info-section";
 // import { Suspense } from "react";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 export const metadata = {
   description:
@@ -23,6 +25,8 @@ export default async function HomePage({
       <HomeHero />
       <ProductsOfTheDay />
       <FeaturedProducts searchParams={searchParams} />
+      <QuickInfoSection />
+      <HelpCTA />
     </>
   );
 }
