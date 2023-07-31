@@ -38,7 +38,7 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.variable}>
-      <body className="bg-softGray text-black selection:bg-teal-300">
+      <body className="bg-softGray text-black selection:bg-darkGray selection:text-offWhite">
         <Navbar />
         <Suspense>
           <main className="bg-softGray">{children}</main>
