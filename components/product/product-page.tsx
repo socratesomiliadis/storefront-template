@@ -21,7 +21,7 @@ export default function ProductPage({ product }: { product: Product }) {
         duration: 0.4,
         ease: "easeOut",
       }}
-      className="w-full dark-section pt-12 grid grid-cols-2 place-items-start gap-16 px-8"
+      className="w-full bg-offWhite dark-section pt-12 grid grid-cols-2 place-items-start gap-16 px-8"
     >
       <div className="w-full relative flex flex-col pt-12 gap-8">
         {firstTwoImages.map((image, index) => {
