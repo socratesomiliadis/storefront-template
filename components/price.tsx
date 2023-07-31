@@ -15,6 +15,14 @@ const Price = ({
     suppressHydrationWarning={true}
     {...props}
   >
+    <span className="block text-right">
+      {`${new Intl.NumberFormat(undefined, {
+        style: "currency",
+        currency: currencyCode,
+        currencyDisplay: "narrowSymbol",
+      }).format(parseFloat(amount))}`}
+      <span className="hidden @[275px]/label:inline">{` ${currencyCode}`}</span>
+    </span>
     {compareAmount && parseFloat(compareAmount) > parseFloat(amount) && (
       <span className="line-through block decoration-red-500">
         {`${new Intl.NumberFormat(undefined, {
@@ -25,14 +33,6 @@ const Price = ({
         <span className="hidden @[275px]/label:inline">{` ${currencyCode}`}</span>
       </span>
     )}
-    <span className="block text-right">
-      {`${new Intl.NumberFormat(undefined, {
-        style: "currency",
-        currency: currencyCode,
-        currencyDisplay: "narrowSymbol",
-      }).format(parseFloat(amount))}`}
-      <span className="hidden @[275px]/label:inline">{` ${currencyCode}`}</span>
-    </span>
   </div>
 );
 

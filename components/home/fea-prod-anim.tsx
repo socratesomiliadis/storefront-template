@@ -3,21 +3,18 @@
 import { Product } from "lib/shopify/types";
 import ProductItem from "components/product-item";
 import { gsap } from "gsap";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import SplitType from "split-type";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import FilterList from "./filter";
-import { useSearchParams } from "next/navigation";
+import { motion } from "framer-motion";
 import { sorting } from "lib/constants";
 import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function FeaProdAnim({ products }: { products: Product[] }) {
-  const [hasAnimedIn, setHasAnimedIn] = useState(false);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const searchParams = useSearchParams();
-  const searchRef = useRef(searchParams);
 
   useEffect(() => {
     const title = titleRef.current as HTMLHeadingElement;
@@ -54,9 +51,6 @@ export default function FeaProdAnim({ products }: { products: Product[] }) {
       defaults: {
         duration: 1,
         ease: "power4.out",
-      },
-      onComplete: () => {
-        setHasAnimedIn(true);
       },
     });
     tl.set(title, {
@@ -121,40 +115,6 @@ export default function FeaProdAnim({ products }: { products: Product[] }) {
     };
   }, []);
 
-  useEffect(() => {
-    const section = sectionRef.current as HTMLDivElement;
-    const productItems = section.querySelectorAll(
-      ".product-item",
-    ) as NodeListOf<HTMLDivElement>;
-
-    if (hasAnimedIn && searchParams !== searchRef.current) {
-      const tl = gsap.timeline({
-        defaults: {
-          duration: 1,
-          ease: "power4.out",
-        },
-      });
-      tl.fromTo(
-        productItems,
-        {
-          y: 50,
-          opacity: 0,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          stagger: 0.1,
-        },
-        0.1,
-      );
-
-      return () => {
-        tl.kill();
-      };
-    }
-  }, [hasAnimedIn, searchParams]);
-
   return (
     <section
       ref={sectionRef}
@@ -176,11 +136,14 @@ export default function FeaProdAnim({ products }: { products: Product[] }) {
       </div>
       <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full gap-8 lg:gap-[1vw] ">
         {products.map((product) => (
-          <ProductItem
-            product={product}
+          <motion.div
+            layout
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             key={product.id}
-            className="w-full opacity-0"
-          />
+            className="w-full"
+          >
+            <ProductItem product={product} className="w-full opacity-0" />
+          </motion.div>
         ))}
       </div>
       <Link

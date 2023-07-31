@@ -13,23 +13,24 @@ export default function Footer() {
     const footerTl = gsap.timeline({
       scrollTrigger: {
         trigger: footer,
-        start: "top bottom",
+        start: "center bottom",
         end: "bottom bottom",
-        scrub: true,
+        onLeaveBack: () => {
+          footerTl.reverse();
+        },
       },
-    });
-    footerTl.set("main", {
-      overflow: "hidden",
     });
     footerTl.fromTo(
       "main",
       {
         scale: 1,
-        borderRadius: 0,
+        duration: 0.6,
+        ease: "power4.out",
       },
       {
         scale: 0.95,
-        borderRadius: "0.75rem",
+        duration: 1,
+        ease: "power4.out",
       },
       0,
     );
