@@ -8,18 +8,7 @@ import Matter from "matter-js";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function GravitationalItems({
-  colors,
-}: {
-  colors?: {
-    bgColor?: string;
-    textColor?: string;
-    descColor?: string;
-    gravSticker1Color?: string;
-    gravSticker2Color?: string;
-    gravStickerBoxColor?: string;
-  };
-}) {
+export default function GravitationalItems() {
   const GRAVITY_DEFAULT_VALUE = 0.0017 as const;
   const containerRef = useRef<HTMLDivElement>(null);
 
