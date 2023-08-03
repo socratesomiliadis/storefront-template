@@ -8,7 +8,7 @@ import Matter from "matter-js";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function NotFound() {
+export default function GravitationalItems() {
   const GRAVITY_DEFAULT_VALUE = 0.0017 as const;
   const containerRef = useRef<HTMLDivElement>(null);
 
