@@ -75,7 +75,7 @@ export default function GravitationalItems({
 
   useEffect(() => {
     // Matter
-    const matterInstance: typeof Matter;
+    let matterInstance: typeof Matter;
     let engine: Engine;
     let boxes: ({
       body: Body;
