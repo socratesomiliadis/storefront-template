@@ -13,9 +13,7 @@ export default function ProductItem({
   product: Product;
   className?: string;
 }) {
-  //@ts-expect-error
   const softGray = tailwindConfig.theme?.extend?.colors["softGray"] as string;
-  //@ts-expect-error
   const darkGray = tailwindConfig.theme?.extend?.colors["darkGray"] as string;
 
   const currentDate = new Date();
