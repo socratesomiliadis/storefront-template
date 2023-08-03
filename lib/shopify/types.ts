@@ -190,6 +190,12 @@ export type ShopifyCustomerAccessTokenCreateOperation = {
       }[];
     };
   };
+  variables: {
+    input: {
+      email: string;
+      password: string;
+    };
+  };
 };
 
 export type ShopifyCustomerActivateOperation = {
@@ -236,6 +242,9 @@ export type ShopifyCustomerAccessTokenDeleteOperation = {
 export type ShopifyCustomerOperation = {
   data: {
     customer: Customer;
+  };
+  variables: {
+    customerAccessToken: string;
   };
 };
 

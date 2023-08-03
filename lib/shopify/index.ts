@@ -10,7 +10,10 @@ import {
   editCartItemsMutation,
   removeFromCartMutation,
 } from "./mutations/cart";
-import { customerCreateMutation } from "./mutations/customer";
+import {
+  customerAccessTokenCreateMutation,
+  customerCreateMutation,
+} from "./mutations/customer";
 import { getCartQuery } from "./queries/cart";
 import {
   getCollectionProductsQuery,
@@ -44,6 +47,7 @@ import {
   ShopifyCollectionsOperation,
   ShopifyCreateCartOperation,
   ShopifyCreateCustomerOperation,
+  ShopifyCustomerAccessTokenCreateOperation,
   ShopifyMenuOperation,
   ShopifyPageOperation,
   ShopifyPagesOperation,
@@ -53,7 +57,9 @@ import {
   ShopifyProductsOperation,
   ShopifyRemoveFromCartOperation,
   ShopifyUpdateCartOperation,
+  ShopifyCustomerOperation,
 } from "./types";
+import { getCustomerQuery } from "./queries/customer";
 
 const domain = `https://${process.env.SHOPIFY_STORE_DOMAIN!}`;
 const endpoint = `${domain}${SHOPIFY_GRAPHQL_API_ENDPOINT}`;
@@ -226,9 +232,39 @@ export async function createCart(): Promise<Cart> {
 export async function createCustomer(): Promise<Customer> {
   const res = await shopifyFetch<ShopifyCreateCustomerOperation>({
     query: customerCreateMutation,
-    cache: "no-store",
   });
   return res.body.data.customerCreate.customer;
+}
+
+export async function getCustomer(
+  accessToken: string,
+): Promise<Customer | undefined> {
+  const res = await shopifyFetch<ShopifyCustomerOperation>({
+    query: getCustomerQuery,
+    variables: {
+      customerAccessToken: accessToken,
+    },
+  });
+  return res.body.data.customer;
+}
+
+export async function createCustomerAccessToken(
+  email: string,
+  password: string,
+): Promise<
+  ShopifyCustomerAccessTokenCreateOperation["data"]["customerAccessTokenCreate"]
+> {
+  const res = await shopifyFetch<ShopifyCustomerAccessTokenCreateOperation>({
+    query: customerAccessTokenCreateMutation,
+    variables: {
+      input: {
+        email,
+        password,
+      },
+    },
+    cache: "no-store",
+  });
+  return res.body.data.customerAccessTokenCreate;
 }
 
 export async function addToCart(

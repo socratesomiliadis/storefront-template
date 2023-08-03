@@ -8,17 +8,6 @@ const customerFragment = /* GraphQL */ `
     phone
     acceptsMarketing
     createdAt
-    orders(first: 100) {
-      edges {
-        node {
-          id
-          currentTotalPrice
-          currentTotalTax
-          email
-          orderNumber
-        }
-      }
-    }
   }
 `;
 

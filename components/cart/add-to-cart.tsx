@@ -5,14 +5,17 @@ import { addItem } from "components/cart/actions";
 import LoadingDots from "components/loading-dots";
 import { ProductVariant } from "lib/shopify/types";
 import { useRouter, useSearchParams } from "next/navigation";
+import { cn } from "lib/utils";
 import { useEffect, useState, useTransition } from "react";
 
 export function AddToCart({
   variants,
   availableForSale,
+  className,
 }: {
   variants: ProductVariant[];
   availableForSale: boolean;
+  className?: string;
 }) {
   const [selectedVariantId, setSelectedVariantId] = useState(variants[0]?.id);
   const router = useRouter();
@@ -50,7 +53,10 @@ export function AddToCart({
         });
       }}
       className={clsx(
-        "relative flex w-full items-center overflow-hidden justify-center rounded-md bg-darkGray p-4 text-white hover:opacity-90",
+        cn(
+          "relative flex w-full items-center overflow-hidden justify-center rounded-md bg-darkGray p-4 text-white hover:opacity-90",
+          className,
+        ),
         {
           "cursor-not-allowed opacity-60": !availableForSale,
           "cursor-not-allowed": isPending,

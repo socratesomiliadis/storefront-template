@@ -5,8 +5,18 @@ import Price from "components/price";
 import { Product } from "lib/shopify/types";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+
 export default function ProductPage({ product }: { product: Product }) {
   const firstTwoImages = product.images.slice(0, 2);
+
+  useEffect(() => {
+    ScrollTrigger.refresh();
+  }, []);
+
   return (
     <motion.div
       initial={{
@@ -21,7 +31,7 @@ export default function ProductPage({ product }: { product: Product }) {
         duration: 0.4,
         ease: "easeOut",
       }}
-      className="w-full bg-offWhite dark-section pt-12 grid grid-cols-2 place-items-start gap-16 px-8"
+      className="w-full bg-offWhite dark-section pt-12 pb-32 rounded-b-lg grid grid-cols-2 place-items-start gap-16 px-8"
     >
       <div className="w-full relative flex flex-col pt-12 gap-8">
         {firstTwoImages.map((image, index) => {

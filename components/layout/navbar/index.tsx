@@ -7,6 +7,8 @@ import Link from "next/link";
 import { Suspense } from "react";
 import Fullmenu from "./full-menu";
 import ChangeNavColor from "./change-colors";
+import OpenAuth from "components/auth/open-auth";
+import Auth from "components/auth";
 
 export default async function Navbar() {
   const menu = await getMenu("main-menu");
@@ -46,6 +48,9 @@ export default async function Navbar() {
           <Suspense fallback={<OpenCart className="h-6" />}>
             <Cart />
           </Suspense>
+          {/* <Suspense fallback={<OpenAuth />}>
+            <Auth />
+          </Suspense> */}
 
           <Suspense>
             <Fullmenu menuInfo={menuLinksWithQuantityAndProduct} />

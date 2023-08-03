@@ -3,25 +3,34 @@
 import { Dialog, Transition } from "@headlessui/react";
 import Price from "components/price";
 import { DEFAULT_OPTION } from "lib/constants";
-import type { Cart } from "lib/shopify/types";
+import type { Cart, Product } from "lib/shopify/types";
 import { createUrl } from "lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment, useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import CloseCart from "./close-cart";
 import DeleteItemButton from "./delete-item-button";
 import EditItemQuantityButton from "./edit-item-quantity-button";
 import OpenCart from "./open-cart";
+import { AddToCart } from "./add-to-cart";
 
 type MerchandiseSearchParams = {
   [key: string]: string;
 };
 
-export default function CartModal({ cart }: { cart: Cart | undefined }) {
+export default function CartModal({
+  cart,
+  recommendedProduct,
+}: {
+  cart: Cart | undefined;
+  recommendedProduct: Product | undefined;
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const quantityRef = useRef(cart?.totalQuantity);
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     // Open cart modal when when quantity changes.
@@ -35,6 +44,10 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
       quantityRef.current = cart?.totalQuantity;
     }
   }, [isOpen, cart?.totalQuantity, quantityRef]);
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
 
   return (
     <>
@@ -166,7 +179,62 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
                       );
                     })}
                   </ul>
-                  <div className="py-4 text-xl text-darkGray">
+                  {recommendedProduct && (
+                    <div className="flex mb-16 flex-col w-full">
+                      <span className="text-2xl text-darkGray">
+                        You might like
+                      </span>
+                      <Link
+                        href={`/product/${recommendedProduct.handle}`}
+                        className="mt-6 w-full flex flex-row"
+                      >
+                        <div className="w-1/5 aspect-square flex items-center justify-center h-auto bg-accentGray">
+                          <Image
+                            className="w-1/3 object-contain"
+                            src={recommendedProduct.featuredImage.url}
+                            width={1920}
+                            height={1080}
+                            alt="Cart background"
+                          />
+                        </div>
+                        <div className="w-4/5 bg-[#1E1E1E] h-full p-6 flex flex-col justify-between">
+                          <h3 className="text-offWhite text-2xl">
+                            {recommendedProduct.title}
+                          </h3>
+                          <p className="text-gray mt-3 w-2/3 text-lg">
+                            {recommendedProduct.description}
+                          </p>
+                          <div className="flex flex-row mt-2 items-center justify-between w-full">
+                            <div className="w-1/3">
+                              <AddToCart
+                                variants={recommendedProduct.variants}
+                                availableForSale={
+                                  recommendedProduct.availableForSale
+                                }
+                                className="bg-offWhite text-darkGray py-2"
+                              />
+                            </div>
+                            <Price
+                              className="text-lg text-offWhite -mb-2 mr-8 flex flex-row items-center gap-3"
+                              compareAmount={
+                                recommendedProduct.compareAtPriceRange
+                                  ?.maxVariantPrice.amount
+                              }
+                              amount={
+                                recommendedProduct.priceRange.maxVariantPrice
+                                  .amount
+                              }
+                              currencyCode={
+                                recommendedProduct.priceRange.maxVariantPrice
+                                  .currencyCode
+                              }
+                            />
+                          </div>
+                        </div>
+                      </Link>
+                    </div>
+                  )}
+                  <div className="py-4text-xl text-darkGray">
                     <div className="mb-3 flex items-end justify-between">
                       <p>Subtotal</p>
                       <Price

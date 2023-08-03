@@ -24,15 +24,24 @@
   "dependencies": {
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
+    "@hookform/resolvers": "^3.1.1",
+    "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-slot": "^1.0.2",
+    "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "framer-motion": "^10.13.2",
     "gsap": "^3.12.2",
     "hamburger-react": "^2.5.0",
+    "lucide-react": "^0.263.1",
     "next": "13.4.12",
     "nextjs13-router-events": "^1.0.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "split-type": "^0.3.3"
+    "react-hook-form": "^7.45.2",
+    "split-type": "^0.3.3",
+    "tailwind-merge": "^1.14.0",
+    "tailwindcss-animate": "^1.0.6",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@tailwindcss/container-queries": "^0.1.1",
