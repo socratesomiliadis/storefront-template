@@ -13,6 +13,7 @@ import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function FeaProdAnim({ products }: { products: Product[] }) {
+  ScrollTrigger.refresh();
   const titleRef = useRef<HTMLHeadingElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
