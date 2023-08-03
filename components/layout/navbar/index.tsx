@@ -29,16 +29,16 @@ export default async function Navbar() {
   return (
     <nav className="fixed left-0 w-full top-0 z-[997]">
       <ChangeNavColor />
-      <div className="flex inner-nav w-full text-darkGray items-center justify-end md:justify-between  p-4 lg:px-6 lg:py-6">
+      <div className="flex inner-nav w-full text-darkGray items-center justify-between p-4 lg:px-6 lg:py-6">
         <Link
           href="/"
           aria-label="Go back home"
-          className="mr-2 hidden md:flex w-full items-center justify-center md:w-auto lg:mr-6"
+          className="flex lg:items-center lg:justify-center lg:mr-6"
         >
           <LogoFull className="fill-[currentColor]" />
         </Link>
 
-        <div className="flex flex-row items-center tracking-tight gap-8  text-lg">
+        <div className="flex flex-row items-center tracking-tight gap-4 lg:gap-8 text-lg">
           <Link href="/products" className="hidden lg:block">
             Shop
           </Link>

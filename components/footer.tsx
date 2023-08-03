@@ -39,17 +39,26 @@ export default function Footer() {
   return (
     <footer
       ref={footerRef}
-      className="w-screen h-[45vh] bg-softGray relative z-10 flex flex-row py-16 px-[2.5%]"
+      className="w-screen lg:h-[45vh] bg-softGray relative gap-12 lg:gap-0 z-10 flex flex-col lg:flex-row pb-16 lg:py-16 px-4 lg:px-[5%]"
     >
-      <div className="w-2/3 h-full flex flex-col justify-between">
-        <p className="text-3xl w-2/3">
-          Get updates on products you probably want to know about in your inbox.
+      <div className="w-full lg:w-2/3 h-full flex flex-col gap-8 lg:gap-0 justify-between">
+        <p className="text-xl lg:text-3xl">
+          Get updates on products you probably
+          <br /> want to know about in your inbox.
         </p>
         <span className="text-lg">
-          Copyright © {new Date().getFullYear()} by SOHub for Marmapipis
+          Copyright © {new Date().getFullYear()} by{" "}
+          <Link
+            href="https://sohub.digital"
+            className="underline"
+            target="_blank"
+          >
+            SOHub
+          </Link>{" "}
+          for Marmapipis
         </span>
       </div>
-      <div className="flex flex-col items-end justify-between pr-32 w-1/3 text-darkGray text-base">
+      <div className="flex flex-col gap-10 lg:gap-0 lg:items-end justify-between lg:pr-64 w-full lg:w-1/3 text-darkGray text-base">
         <div className="flex flex-col">
           <span>Support</span>
           <ul className="flex flex-col mt-12">

@@ -41,7 +41,7 @@ export default async function RootLayout({
       <body className="bg-softGray text-black selection:bg-darkGray selection:text-offWhite">
         <Navbar />
         <Suspense>
-          <main className="bg-softGray">{children}</main>
+          <main className="bg-offWhite">{children}</main>
         </Suspense>
         <Footer />
       </body>

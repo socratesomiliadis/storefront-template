@@ -38,8 +38,11 @@ export default function HomeHero() {
 
   return (
     <section
+      style={{
+        clipPath: "inset(0 0 0 0)",
+      }}
       ref={sectionRef}
-      className="sticky top-0 w-screen light-section h-screen z-[5]"
+      className="w-screen relative light-section h-screen z-[5]"
     >
       <video
         poster="/static/images/heroVidThumb.png"
@@ -48,7 +51,7 @@ export default function HomeHero() {
         loop
         muted
         playsInline
-        className="w-full h-full object-cover"
+        className="w-full fixed top-0 h-full object-cover"
       />
     </section>
   );

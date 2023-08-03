@@ -5,7 +5,7 @@ export default function LogoFull(props: React.ComponentProps<"svg">) {
     <svg
       aria-label={`${process.env.SITE_NAME} logo`}
       {...props}
-      className={clsx("h-3 fill-[currentColor]", props.className)}
+      className={clsx("h-2 lg:h-3 fill-[currentColor]", props.className)}
       id="Layer_2"
       data-name="Layer 2"
       xmlns="http://www.w3.org/2000/svg"

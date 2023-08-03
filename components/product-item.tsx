@@ -27,7 +27,7 @@ export default function ProductItem({
       className={clsx("product-item flex group flex-col relative", className)}
     >
       {!product.availableForSale && (
-        <span className="bg-softGray z-10 select-none text-sm block px-6 py-2 rounded-md text-darkGray absolute right-6 bottom-16 lg:bottom-auto lg:top-6">
+        <span className="bg-softGray z-10 select-none text-sm block px-4 lg:px-6 py-1 lg:py-2 rounded-md text-darkGray absolute right-4 bottom-4 lg:bottom-auto lg:top-6">
           Out of stock
         </span>
       )}
@@ -45,7 +45,7 @@ export default function ProductItem({
         className="w-full overflow-hidden relative z-0 bg-softGray aspect-[1/1] h-auto"
       >
         {!!product.availableForSale && (
-          <div className="absolute lg:translate-y-[150%] lg:group-hover:translate-y-0 transition-transform duration-300 ease-out z-10 w-full px-6 lg:px-12 bottom-4 lg:bottom-6">
+          <div className="absolute hidden lg:block lg:translate-y-[150%] lg:group-hover:translate-y-0 transition-transform duration-300 ease-out z-10 w-full px-6 lg:px-12 bottom-4 lg:bottom-6">
             <AddToCart
               variants={product.variants}
               availableForSale={product.availableForSale}
@@ -56,9 +56,9 @@ export default function ProductItem({
           style={{
             color: product.availableForSale ? darkGray : softGray,
           }}
-          className="top-6 left-6 font-medium absolute flex flex-col"
+          className="top-4 left-4 lg:top-6 lg:left-6 font-medium absolute flex flex-col"
         >
-          <span>{product.title}</span>
+          <span className="text-sm lg:text-base">{product.title}</span>
           <span className="mt-2 flex flex-row pointer-events-none items-center gap-2">
             {product.options.map((option) => {
               return option.values.map((value, index) => {
@@ -71,6 +71,18 @@ export default function ProductItem({
             })}
           </span>
         </span>
+        <h4 className="absolute left-4 bottom-4 flex lg:hidden flex-row w-full text-darkGray text-xl justify-between items-start">
+          <span>
+            <Price
+              className="text-base flex flex-row items-center gap-3"
+              compareAmount={
+                product.compareAtPriceRange?.maxVariantPrice.amount
+              }
+              amount={product.priceRange.maxVariantPrice.amount}
+              currencyCode={product.priceRange.maxVariantPrice.currencyCode}
+            />
+          </span>
+        </h4>
         <Link
           href={`/product/${product.handle}`}
           className="w-full h-full relative flex items-center justify-center"
@@ -82,11 +94,11 @@ export default function ProductItem({
             placeholder="blur"
             width={600}
             height={600}
-            className="object-contain group-hover:scale-105 transition-transform duration-300 ease-out h-[50%] w-[40%]"
+            className="object-contain -mb-[15%] lg:mb-0 group-hover:scale-105 transition-transform duration-300 ease-out h-[50%] w-[40%]"
           />
         </Link>
       </div>
-      <h4 className="flex mt-3 flex-row w-full text-darkGray text-xl justify-between items-start">
+      <h4 className="hidden lg:flex mt-3 flex-row w-full text-darkGray text-xl justify-between items-start">
         <span>
           <Price
             className="text-base flex flex-row items-center gap-3"
@@ -96,6 +108,14 @@ export default function ProductItem({
           />
         </span>
       </h4>
+      {!!product.availableForSale && (
+        <div className="lg:hidden text-xs mt-3 z-10 w-full">
+          <AddToCart
+            variants={product.variants}
+            availableForSale={product.availableForSale}
+          />
+        </div>
+      )}
     </div>
   );
 }

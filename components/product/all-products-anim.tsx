@@ -118,13 +118,13 @@ export default function AllProdAnim({ products }: { products: Product[] }) {
   return (
     <section
       ref={sectionRef}
-      className="bg-offWhite py-44 min-h-screen justify-evenly gap-16 relative z-10 w-screen flex flex-col items-center px-6 lg:px-[6vw]"
+      className="bg-offWhite py-44 min-h-screen justify-evenly gap-16 relative z-10 w-screen flex flex-col lg:items-center px-6 lg:px-[6vw]"
     >
-      <div className="w-full flex flex-row items-center justify-between">
+      <div className="w-full flex flex-col lg:flex-row lg:items-center justify-between">
         <div className="flex flex-row gap-4 items-start">
           <h3
             ref={titleRef}
-            className="font-medium flex flex-row items-center gap-4 opacity-0 text-darkGray tracking-tight text-4xl lg:text-7xl"
+            className="font-medium flex flex-row items-center gap-1 lg:gap-4 opacity-0 text-darkGray tracking-tight text-4xl lg:text-7xl"
           >
             All of our products
           </h3>
@@ -134,7 +134,7 @@ export default function AllProdAnim({ products }: { products: Product[] }) {
         </div>
         <FilterList list={sorting} />
       </div>
-      <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full gap-8 lg:gap-[1vw] ">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full gap-y-10 lg:gap-y-16 gap-x-1 lg:gap-x-[1vw] ">
         {products.map((product) => (
           <motion.div
             layout

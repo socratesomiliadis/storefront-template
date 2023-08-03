@@ -8,19 +8,21 @@ function Item({
   index: number;
 }) {
   return (
-    <div className="flex flex-row items-center">
+    <div className="flex flex-col lg:flex-row items-center">
       <div className="w-full flex flex-col items-center gap-3 py-24">
         <span className="w-5">{icon}</span>
-        <p className="w-1/4 text-center">{text}</p>
+        <p className="w-3/4 lg:w-1/4 text-center">{text}</p>
       </div>
-      {index !== 2 && <div className="w-[1px] bg-gray/40 h-1/2"></div>}
+      {index !== 2 && (
+        <div className="w-2/3 lg:w-[1px] bg-gray/40 h-[1px] lg:h-1/2"></div>
+      )}
     </div>
   );
 }
 
 export default function QuickInfoSection() {
   return (
-    <section className="w-full bg-offWhite relative z-10 grid grid-cols-3 border-y-[1px] border-gray/40 text-darkGray">
+    <section className="w-full bg-offWhite relative z-10 grid grod-cols-1 lg:grid-cols-3 border-y-[1px] border-gray/40 text-darkGray">
       <Item
         icon={
           <svg

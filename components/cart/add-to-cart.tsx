@@ -54,7 +54,7 @@ export function AddToCart({
       }}
       className={clsx(
         cn(
-          "relative flex w-full items-center overflow-hidden justify-center rounded-md bg-darkGray p-4 text-white hover:opacity-90",
+          "relative flex w-full items-center overflow-hidden justify-center rounded-md bg-darkGray p-3 lg:p-4 text-white hover:opacity-90",
           className,
         ),
         {
