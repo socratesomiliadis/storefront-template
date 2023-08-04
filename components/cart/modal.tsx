@@ -184,11 +184,11 @@ export default function CartModal({
                       <span className="text-2xl text-darkGray">
                         You might like
                       </span>
-                      <Link
-                        href={`/product/${recommendedProduct.handle}`}
-                        className="mt-6 w-full flex flex-row"
-                      >
-                        <div className="w-1/5 aspect-square flex items-center justify-center h-auto bg-accentGray">
+                      <div className="mt-6 w-full flex flex-row">
+                        <Link
+                          href={`/product/${recommendedProduct.handle}`}
+                          className="w-1/5 aspect-square flex items-center justify-center h-auto bg-accentGray"
+                        >
                           <Image
                             className="w-1/3 object-contain"
                             src={recommendedProduct.featuredImage.url}
@@ -196,7 +196,7 @@ export default function CartModal({
                             height={1080}
                             alt="Cart background"
                           />
-                        </div>
+                        </Link>
                         <div className="w-4/5 bg-[#1E1E1E] h-full p-6 flex flex-col justify-between">
                           <h3 className="text-offWhite text-2xl">
                             {recommendedProduct.title}
@@ -231,7 +231,7 @@ export default function CartModal({
                             />
                           </div>
                         </div>
-                      </Link>
+                      </div>
                     </div>
                   )}
                   <div className="py-4text-xl text-darkGray">

@@ -26,9 +26,9 @@ function MenuLink({
       onMouseOver={() => setActiveImage(index)}
       className="w-full group relative overflow-hidden flex flex-col gap-10 pt-10"
     >
-      <div className="group-hover:ml-6 translate-y-[150%] menu-link-item transition-[margin-left] duration-200 ease-out flex flex-row items-center gap-10">
-        <span className="text-gray text-3xl">{quantity}</span>
-        <span className="text-7xl text-darkGray">{title}</span>
+      <div className="group-hover:ml-6 translate-y-[200%] menu-link-item transition-[margin-left] duration-200 ease-out flex flex-row items-center gap-10">
+        <span className="text-gray text-xl lg:text-3xl">{quantity}</span>
+        <span className="text-4xl lg:text-7xl text-darkGray">{title}</span>
         <span className="w-0 group-hover:w-12 transition-[width] duration-200 ease-out">
           <svg
             width="100%"
@@ -188,7 +188,7 @@ export default function Fullmenu({ menuInfo }: { menuInfo: any[] }) {
       closeTl.to(
         ".menu-link-item",
         {
-          y: "150%",
+          y: "200%",
           duration: 0.6,
           stagger: 0.05,
           ease: "power3.out",
@@ -250,9 +250,17 @@ export default function Fullmenu({ menuInfo }: { menuInfo: any[] }) {
       >
         <Hamburger size={16} color="#F8F6F0" toggled={false} />
       </div>
-      <div className="select-none pointer-events-none fixed left-1/2 full-menu -translate-x-1/2 top-1/2 -translate-y-1/2 bg-transparent w-[90%] h-[85%] z-[999] flex flex-row">
-        <div className="basis-1/2 pointer-events-auto full-menu-left max-h-0 overflow-hidden flex flex-col bg-softGray justify-between">
-          <div className="flex flex-col p-16 basis-[80%]">
+      <div className="select-none pointer-events-none fixed left-1/2 full-menu -translate-x-1/2 top-1/2 -translate-y-1/2 bg-transparent w-[90%] h-[95%] lg:h-[85%] z-[999] flex flex-row">
+        <div className="basis-full relative lg:basis-1/2 pointer-events-auto full-menu-left max-h-0 overflow-hidden flex flex-col bg-softGray justify-between">
+          <div
+            onClick={() => {
+              setIsOpen(false);
+            }}
+            className="p-0 bg-darkGray absolute right-6 top-6 rounded-full flex items-center justify-center"
+          >
+            <Hamburger size={16} color="#F8F6F0" toggled={true} />
+          </div>
+          <div className="mt-8 lg:mt-0 flex flex-col p-6 lg:p-16 basis-[90%] lg:basis-[80%]">
             {menuInfo.map((item, index) => {
               return (
                 <MenuLink
@@ -268,13 +276,13 @@ export default function Fullmenu({ menuInfo }: { menuInfo: any[] }) {
           </div>
           <Link
             href="/products"
-            className="ml-16 mb-6 flex flex-row items-center"
+            className="ml-6 lg:ml-16 mb-6 flex flex-row items-center"
           >
             <span className="text-lg underline text-gray">See all</span>
           </Link>
         </div>
 
-        <div className="basis-1/2 relative pointer-events-auto full-menu-right max-h-0 overflow-hidden bg-accentGray flex items-center justify-center">
+        <div className="basis-1/2 relative pointer-events-auto full-menu-right max-h-0 overflow-hidden bg-accentGray hidden lg:flex items-center justify-center">
           <div
             onClick={() => {
               setIsOpen(false);
@@ -292,8 +300,8 @@ export default function Fullmenu({ menuInfo }: { menuInfo: any[] }) {
                   className="absolute full-menu-image opacity-0 w-full h-full object-center object-contain"
                   height={800}
                   width={800}
-                  alt={item.product.images[0]?.altText as string}
-                  src={item.product.images[0]?.url as string}
+                  alt={item.product?.images[0]?.altText as string}
+                  src={item.product?.images[0]?.url as string}
                   priority={true}
                 />
               );

@@ -7,14 +7,12 @@ import Link from "next/link";
 import { Suspense } from "react";
 import Fullmenu from "./full-menu";
 import ChangeNavColor from "./change-colors";
-import OpenAuth from "components/auth/open-auth";
-import Auth from "components/auth";
 
 export default async function Navbar() {
   const menu = await getMenu("main-menu");
   const menuLinksWithQuantityAndProduct = [] as any[];
   menu.forEach((item) => {
-    const handle = item.path.split("/search/").pop();
+    const handle = item.path.split("/products/").pop();
     if (handle) {
       getCollectionProducts({ collection: handle }).then((products) => {
         menuLinksWithQuantityAndProduct.push({
@@ -52,9 +50,9 @@ export default async function Navbar() {
             <Auth />
           </Suspense> */}
 
-          <Suspense>
-            <Fullmenu menuInfo={menuLinksWithQuantityAndProduct} />
-          </Suspense>
+          {/* <Suspense> */}
+          <Fullmenu menuInfo={menuLinksWithQuantityAndProduct} />
+          {/* </Suspense> */}
         </div>
       </div>
     </nav>

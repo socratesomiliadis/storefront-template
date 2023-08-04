@@ -151,7 +151,7 @@ const reshapeCollection = (
 
   return {
     ...collection,
-    path: `/search/${collection.handle}`,
+    path: `/products/${collection.handle}`,
   };
 };
 
@@ -391,7 +391,7 @@ export async function getCollections(): Promise<Collection[]> {
         title: "All",
         description: "All products",
       },
-      path: "/search",
+      path: "/products",
       updatedAt: new Date().toISOString(),
     },
     // Filter out the `hidden` collections.
@@ -435,7 +435,7 @@ export async function getMenu(handle: string): Promise<Menu[]> {
       title: item.title,
       path: item.url
         .replace(domain, "")
-        .replace("/collections", "/search")
+        .replace("/collections", "/products")
         .replace("/pages", ""),
     })) || []
   );
