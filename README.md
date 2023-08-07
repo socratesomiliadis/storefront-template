@@ -1,4 +1,4 @@
-# Shopify Storefront Template by (SOHub)[https://sohub.digital/] 
+# Shopify Storefront Template by [SOHub](https://sohub.digital/)
 
 A Next.js 13 and App Router-ready ecommerce template featuring:
 
