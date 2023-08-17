@@ -6,7 +6,7 @@ export default function AboutPage() {
     <div className="w-full bg-offWhite pt-64 rounded-b-lg">
       <section className="flex flex-col items-center gap-24 justify-center text-darkGray w-screen">
         <h1 className="font-medium text-8xl">About our company</h1>
-        <p className="font-medium text-4xl text-center w-1/2">
+        <p className="font-medium text-2xl text-center w-1/3">
           Our company is built on the pillars of convenience, reliability, and
           customer satisfaction.
           <br />
