@@ -105,3 +105,16 @@ span,
 p {
   @apply tracking-tighter;
 }
+
+.footer-links > a {
+  width: fit-content;
+  background-image: linear-gradient(rgb(57 47 47), rgb(57 47 47));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size 0.3s ease-out;
+}
+
+.footer-links > a:hover {
+  background-size: 100% 1px;
+}

@@ -60,21 +60,20 @@ export default function Footer() {
       </div>
       <div className="flex flex-col gap-10 lg:gap-0 lg:items-end justify-between lg:pr-64 w-full lg:w-1/3 text-darkGray text-base">
         <div className="flex flex-col">
-          <span>Support</span>
-          <ul className="flex flex-col mt-12">
+          <span className="text-xl">Support</span>
+          <ul className="flex flex-col gap-1 mt-12 footer-links">
             <Link href="/">Shipping & Returns</Link>
             <Link href="/">Help & FAQ</Link>
             <Link href="/">Terms & Conditions</Link>
             <Link href="/">Privacy Policy</Link>
             <Link href="/">Contact</Link>
-            <Link href="/">Login</Link>
           </ul>
         </div>
         <div className="flex flex-row items-center text-offWhite gap-3">
           <Link
             href="https://instagram.com"
             target="_blank"
-            className="flex items-center justify-center w-10 h-10 bg-darkGray rounded-full"
+            className="flex items-center justify-center w-10 h-10 bg-darkGray rounded-full hover:scale-110 transition-transform duration-200 ease-out"
           >
             <svg
               width="40%"
@@ -91,7 +90,7 @@ export default function Footer() {
           <Link
             href="https://twitter.com"
             target="_blank"
-            className="flex items-center justify-center w-10 h-10 bg-darkGray rounded-full"
+            className="flex items-center justify-center w-10 h-10 bg-darkGray rounded-full hover:scale-110 transition-transform duration-200 ease-out"
           >
             <svg
               width="40%"
@@ -108,7 +107,7 @@ export default function Footer() {
           <Link
             href="https://facebook.com"
             target="_blank"
-            className="flex items-center justify-center w-10 h-10 bg-darkGray rounded-full"
+            className="flex items-center justify-center w-10 h-10 bg-darkGray rounded-full hover:scale-110 transition-transform duration-200 ease-out"
           >
             <svg
               width="30%"
