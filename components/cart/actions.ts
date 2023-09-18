@@ -7,6 +7,7 @@ import {
   removeFromCart,
   updateCart,
 } from "lib/shopify";
+import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 export const addItem = async (
@@ -31,6 +32,7 @@ export const addItem = async (
   }
   try {
     await addToCart(cartId, [{ merchandiseId: variantId, quantity: quantity }]);
+    revalidateTag("recProducts");
   } catch (e) {
     return new Error("Error adding item", { cause: e });
   }
@@ -46,6 +48,7 @@ export const removeItem = async (
   }
   try {
     await removeFromCart(cartId, [lineId]);
+    revalidateTag("recProducts");
   } catch (e) {
     return new Error("Error removing item", { cause: e });
   }

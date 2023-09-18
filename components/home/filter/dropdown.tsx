@@ -52,9 +52,9 @@ export default function FilterItemDropdown({ list }: { list: ListItem[] }) {
           className="flex w-full cursor-pointer items-center justify-between rounded bg-accentGray px-16 py-2 text-sm"
         >
           <div className="pointer-events-none flex items-center justify-center select-none mr-1 relative">
-            <span className="absolute flex flex-row items-center gap-3 whitespace-nowrap">
+            <span className="absolute flex flex-row items-center gap-2 whitespace-nowrap">
               {active}
-              <span className="w-2">
+              <span className="w-[0.4rem]">
                 <svg
                   width="100%"
                   viewBox="0 0 9 7"

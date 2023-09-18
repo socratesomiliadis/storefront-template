@@ -441,6 +441,44 @@ export async function getMenu(handle: string): Promise<Menu[]> {
   );
 }
 
+type MenuCustom = {
+  path: string;
+  title: string;
+};
+
+type MenuCustomPopulated = {
+  path: string;
+  title: string;
+  quantity: number;
+  product: Product;
+};
+
+export async function getMenuCustom(menu: MenuCustom[]): Promise<MenuCustom[]> {
+  const menuCustomPopulated: MenuCustomPopulated[] = [];
+  menu.forEach(async (item) => {
+    const handle = item.path.split("/products/").pop();
+    if (handle) {
+      const res = await shopifyFetch<ShopifyCollectionProductsOperation>({
+        query: getCollectionProductsQuery,
+        tags: [TAGS.collections],
+        variables: {
+          handle,
+        },
+      });
+      menuCustomPopulated.push({
+        ...item,
+        quantity: res.body.data.collection.products.edges.length,
+        product: reshapeProduct(
+          //@ts-expect-error
+          res.body.data.collection.products.edges[0].node,
+        )!,
+      });
+    }
+  });
+
+  return menuCustomPopulated;
+}
+
 export async function getPage(handle: string): Promise<Page> {
   const res = await shopifyFetch<ShopifyPageOperation>({
     query: getPageQuery,
@@ -484,7 +522,7 @@ export async function getProductRecommendations(
 ): Promise<Product[]> {
   const res = await shopifyFetch<ShopifyProductRecommendationsOperation>({
     query: getProductRecommendationsQuery,
-    tags: [TAGS.products],
+    tags: [TAGS.products, "recProducts"],
     variables: {
       productId,
     },

@@ -11,7 +11,13 @@ import { motion } from "framer-motion";
 import { sorting } from "lib/constants";
 gsap.registerPlugin(ScrollTrigger);
 
-export default function AllProdAnim({ products }: { products: Product[] }) {
+export default function AllProdAnim({
+  products,
+  title = " All of our products",
+}: {
+  products: Product[];
+  title?: string;
+}) {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -126,7 +132,7 @@ export default function AllProdAnim({ products }: { products: Product[] }) {
             ref={titleRef}
             className="font-medium flex flex-row items-center gap-1 lg:gap-4 opacity-0 text-darkGray tracking-tight text-4xl lg:text-7xl"
           >
-            All of our products
+            {title}
           </h3>
           <span className="text-4xl products-num text-gray">
             {products.length}

@@ -6,9 +6,7 @@ import { gsap } from "gsap";
 import { useEffect, useRef } from "react";
 import SplitType from "split-type";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import FilterList from "./filter";
 import { motion } from "framer-motion";
-import { sorting } from "lib/constants";
 import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
 
@@ -133,7 +131,7 @@ export default function FeaProdAnim({ products }: { products: Product[] }) {
             {products.length}
           </span>
         </div>
-        <FilterList list={sorting} />
+        {/* <FilterList list={sorting} /> */}
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full gap-y-10 lg:gap-y-16 gap-x-8 lg:gap-x-[1vw]">
         {products.map((product) => (
@@ -149,9 +147,14 @@ export default function FeaProdAnim({ products }: { products: Product[] }) {
       </div>
       <Link
         href="/products"
-        className="see-all-btn mt-16 flex flex-row items-center"
+        className="see-all-btn group relative overflow-hidden px-20 rounded-md py-3 bg-darkGray mt-16 flex flex-row items-center"
       >
-        <span className="text-lg underline text-gray">See all</span>
+        <span className="text-lg text-softGray group-hover:translate-y-[-130%] transition-transform duration-200 ease-out">
+          See all
+        </span>
+        <span className="text-lg text-softGray absolute translate-y-[130%] group-hover:translate-y-0 transition-transform duration-200 ease-out">
+          See all
+        </span>
       </Link>
     </section>
   );

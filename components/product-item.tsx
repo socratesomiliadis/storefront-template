@@ -45,7 +45,7 @@ export default function ProductItem({
         className="w-full overflow-hidden relative z-0 bg-softGray aspect-[1/1] h-auto"
       >
         {!!product.availableForSale && (
-          <div className="absolute hidden lg:block lg:translate-y-[150%] lg:group-hover:translate-y-0 transition-transform duration-300 ease-out z-10 w-full px-6 lg:px-12 bottom-4 lg:bottom-6">
+          <div className="absolute hidden lg:block scale-[0.8] group-hover:scale-100 lg:translate-y-[150%] lg:group-hover:translate-y-0 transition-transform duration-300 ease-out z-10 w-full px-6 lg:px-12 bottom-4 lg:bottom-6">
             <AddToCart
               variants={product.variants}
               availableForSale={product.availableForSale}

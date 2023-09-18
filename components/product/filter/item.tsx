@@ -58,15 +58,23 @@ function SortFilterItem({ item }: { item: SortFilterItem }) {
 
   return (
     <li
-      className="mt-2 flex text-sm text-black dark:text-white"
+      className="mt-3 flex text-sm text-black dark:text-white"
       key={item.title}
     >
       <DynamicTag
         prefetch={!active ? false : undefined}
         href={href}
-        className={clsx("w-full", {
-          "underline underline-offset-4": active,
-        })}
+        style={{
+          backgroundImage: "linear-gradient(rgb(0,0,0), rgb(0,0,0))",
+          backgroundPosition: "0 100%",
+          backgroundRepeat: "no-repeat",
+        }}
+        className={clsx(
+          "w-fit bg-[length:0%_1px] hover:bg-[length:100%_1px] transition-[background-size] duration-200 ease-out",
+          {
+            "underline underline-offset-4": active,
+          },
+        )}
       >
         {item.title}
       </DynamicTag>

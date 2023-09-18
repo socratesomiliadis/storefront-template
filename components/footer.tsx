@@ -55,7 +55,7 @@ export default function Footer() {
           >
             SOHub
           </Link>{" "}
-          for Marmapipis
+          for Perfume Sense
         </span>
       </div>
       <div className="flex flex-col gap-10 lg:gap-0 lg:items-end justify-between lg:pr-64 w-full lg:w-1/3 text-darkGray text-base">

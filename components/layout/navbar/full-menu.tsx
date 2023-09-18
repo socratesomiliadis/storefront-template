@@ -256,7 +256,7 @@ export default function Fullmenu({ menuInfo }: { menuInfo: any[] }) {
             onClick={() => {
               setIsOpen(false);
             }}
-            className="p-0 bg-darkGray absolute right-6 top-6 rounded-full flex items-center justify-center"
+            className="p-0 bg-darkGray absolute right-6 top-6 rounded-full flex lg:hidden items-center justify-center"
           >
             <Hamburger size={16} color="#F8F6F0" toggled={true} />
           </div>

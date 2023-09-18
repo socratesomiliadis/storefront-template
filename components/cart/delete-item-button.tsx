@@ -34,7 +34,7 @@ export default function DeleteItemButton({ item }: { item: CartItem }) {
       )}
     >
       {isPending ? (
-        <LoadingDots className="bg-black" />
+        <LoadingDots color="rgb(0 0 0)" className="bg-black" />
       ) : (
         <span className="w-4">
           <svg

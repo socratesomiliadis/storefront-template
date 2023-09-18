@@ -4,7 +4,6 @@ import { AddToCart } from "components/cart/add-to-cart";
 import Price from "components/price";
 import { Product } from "lib/shopify/types";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import SplitType from "split-type";
@@ -144,7 +143,7 @@ export default function ProductPage({
             );
           })}
         </div>
-        <div className="order-1 lg:order-2 lg:sticky top-0 mt-32 w-full flex flex-col px-4 lg:px-8">
+        <div className="order-1 lg:order-2 lg:sticky top-24 mt-32 w-full flex flex-col px-4 lg:px-8">
           <h1
             ref={titleRef}
             className="text-3xl flex flex-row gap-2 w-full opacity-0 lg:text-4xl text-darkGray font-medium"
@@ -175,7 +174,7 @@ export default function ProductPage({
             <div className="w-full anim-in h-[1px] bg-gray/40"></div>
           </div>
           <AddToCart
-            className="anim-in"
+            className="anim-in mt-8"
             variants={product.variants}
             availableForSale={product.availableForSale}
           />

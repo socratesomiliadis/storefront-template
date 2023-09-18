@@ -43,7 +43,7 @@ export default function CartModal({
       // Always update the quantity reference
       quantityRef.current = cart?.totalQuantity;
     }
-  }, [isOpen, cart?.totalQuantity, quantityRef]);
+  }, [isOpen, cart?.totalQuantity, quantityRef, recommendedProduct]);
 
   useEffect(() => {
     setIsOpen(false);
@@ -206,13 +206,16 @@ export default function CartModal({
                           </p>
                           <div className="flex flex-row mt-2 items-center justify-between w-full">
                             <div className="w-1/3">
-                              <AddToCart
-                                variants={recommendedProduct.variants}
-                                availableForSale={
-                                  recommendedProduct.availableForSale
-                                }
-                                className="bg-offWhite text-darkGray py-2"
-                              />
+                              {recommendedProduct.variants && (
+                                <AddToCart
+                                  dotsColor="rgb(30 30 30 / 0.6)"
+                                  variants={recommendedProduct.variants}
+                                  availableForSale={
+                                    recommendedProduct.availableForSale
+                                  }
+                                  className="bg-offWhite text-darkGray py-2"
+                                />
+                              )}
                             </div>
                             <Price
                               className="text-lg text-offWhite -mb-2 mr-8 flex flex-row items-center gap-3"

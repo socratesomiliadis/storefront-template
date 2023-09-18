@@ -12,10 +12,12 @@ export function AddToCart({
   variants,
   availableForSale,
   className,
+  dotsColor = "rgb(255 255 255 / 0.6)",
 }: {
   variants: ProductVariant[];
   availableForSale: boolean;
   className?: string;
+  dotsColor?: string;
 }) {
   const [selectedVariantId, setSelectedVariantId] = useState(variants[0]?.id);
   const router = useRouter();
@@ -79,7 +81,10 @@ export function AddToCart({
         }}
         className="absolute transition-transform duration-300 ease-out left-1/2"
       >
-        <LoadingDots className="mb-3 w-[0.4rem] h-[0.4rem] bg-white/60" />
+        <LoadingDots
+          color={dotsColor}
+          className={`mb-3 w-[0.4rem] h-[0.4rem] bg-[${dotsColor}]`}
+        />
       </div>
     </button>
   );

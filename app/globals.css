@@ -97,3 +97,11 @@ body {
 ::-webkit-scrollbar-thumb {
   @apply bg-darkGray;
 }
+
+h1,
+h2,
+h3,
+span,
+p {
+  @apply tracking-tighter;
+}
