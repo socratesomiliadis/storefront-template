@@ -12,9 +12,14 @@ export default function HelpCTA() {
         </p>
         <Link
           href="/contact"
-          className="py-3 mt-6 px-20 rounded-md text-xl bg-offWhite text-darkGray"
+          className="group relative overflow-hidden px-20 rounded-md py-3 bg-offWhite text-darkGray mt-16 flex flex-row items-center"
         >
-          Contact us
+          <span className="text-xl group-hover:translate-y-[-130%] transition-transform duration-200 ease-out">
+            Contact us
+          </span>
+          <span className="text-xl absolute translate-y-[130%] group-hover:translate-y-0 transition-transform duration-200 ease-out">
+            Contact us
+          </span>
         </Link>
       </div>
     </section>
